@@ -4,360 +4,586 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BIM Services SEO Performance Matrix</title>
-    <!-- This script automatically loads Tailwind CSS to make the classes work -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base Styles & Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f8fafc; /* bg-slate-50 */
+            color: #334155; /* text-slate-800 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .page-wrapper { padding: 2.5rem; }
+        }
+
+        .container {
+            max-width: 80rem; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Header Section */
+        .main-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .main-header h1 {
+            font-size: 1.875rem;
+            color: #0f172a;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-header h1 { font-size: 2.25rem; }
+        }
+
+        .date-badge {
+            display: inline-block;
+            background-color: #0f172a;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.025em;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+        }
+
+        /* Section Typography */
+        .section-title {
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin: 2rem 0;
+            padding-left: 0.75rem;
+            border-left: 4px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        /* Performance Matrix Grid */
+        .grid-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 640px) { .grid-stats { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .grid-stats { grid-template-columns: repeat(4, 1fr); } }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f8fafc;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #f8fafc;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .stat-label { color: #64748b; font-weight: 500; }
+        .stat-value { color: #0f172a; font-weight: 700; }
+
+        /* Utility Colors */
+        .text-red { color: #ef4444; }
+        .text-amber { color: #f59e0b; }
+        .text-emerald { color: #10b981; }
+        .text-purple { color: #a855f7; }
+
+        /* Keywords Table */
+        .table-wrapper {
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+            margin-bottom: 4rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            padding: 1rem;
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.875rem;
+            color: #334155;
+        }
+
+        tr:hover { background-color: #f8fafc; transition: background 0.2s; }
+
+        .keyword-chip {
+            background: #f1f5f9;
+            color: #2563eb;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-weight: 600;
+        }
+
+        .click-chip {
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        /* SERP Grid Section */
+        .grid-serp {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) { .grid-serp { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .grid-serp { grid-template-columns: repeat(3, 1fr); } }
+
+        .serp-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .serp-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .serp-context {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .serp-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .pos-container {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pos-badge {
+            color: white;
+            padding: 0.375rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .bg-emerald { background-color: #10b981; }
+        .bg-purple { background-color: #a855f7; }
+        .bg-amber { background-color: #f59e0b; }
+
+        .serp-footer {
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1rem;
+            margin-top: auto;
+        }
+
+        .footer-tag {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-bottom: 0.25rem;
+        }
+
+        .serp-footer a {
+            font-size: 0.875rem;
+            color: #3b82f6;
+            text-decoration: none;
+            word-break: break-all;
+            font-weight: 500;
+        }
+
+        .serp-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
-    <div class="min-h-screen bg-slate-50 text-slate-800 font-sans p-6 md:p-10">
-      <div class="max-w-7xl mx-auto">
-        
-        <!-- Main Header -->
-        <div class="text-center mb-12 pb-6 border-b-2 border-slate-200">
-          <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            BIM Services (Countries Page) SEO Performance Matrix
-          </h1>
-          <div class="inline-block bg-slate-900 text-white px-6 py-2 rounded-full font-semibold text-sm tracking-wide shadow-sm">
-            United States | Jan 01, 2026 – Mar 19, 2026
-          </div>
+    <div class="page-wrapper">
+        <div class="container">
+            
+            <header class="main-header">
+                <h1>BIM Services (Countries Page) SEO Performance Matrix</h1>
+                <div class="date-badge">
+                    United States | Jan 01, 2026 – Mar 19, 2026
+                </div>
+            </header>
+
+            <h2 class="section-title">1. Regional Performance Matrix</h2>
+            
+            <div class="grid-stats">
+                <div class="stat-card">
+                    <h3>California</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Impressions</span>
+                        <span class="stat-value">2,322</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Clicks</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Avg. Position</span>
+                        <span class="stat-value text-red">39.8</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Desktop / Mobile</span>
+                        <span class="stat-value">1,632 / 690</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Florida</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Impressions</span>
+                        <span class="stat-value">821</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Clicks</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Avg. Position</span>
+                        <span class="stat-value text-amber">20.0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Desktop / Mobile</span>
+                        <span class="stat-value">357 / 464</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Texas</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Impressions</span>
+                        <span class="stat-value">965</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Clicks</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Avg. Position</span>
+                        <span class="stat-value text-red">29.2</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Desktop / Mobile</span>
+                        <span class="stat-value">864 / 101</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Boston</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Impressions</span>
+                        <span class="stat-value">539</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Total Clicks</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Avg. Position</span>
+                        <span class="stat-value text-emerald">21.4</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Desktop / Mobile</span>
+                        <span class="stat-value">484 / 54</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">2. Top Keyword (Clicks & High Impressions)</h2>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Region</th>
+                            <th>Keyword</th>
+                            <th>Clicks</th>
+                            <th>Impressions</th>
+                            <th>Pos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>California</td>
+                            <td><span class="keyword-chip">bim outsourcing</span></td>
+                            <td><span class="click-chip">1 Click</span></td>
+                            <td>45</td>
+                            <td>35.6</td>
+                        </tr>
+                        <tr>
+                            <td>Texas</td>
+                            <td><span class="keyword-chip">bim services provider</span></td>
+                            <td><span class="click-chip">1 Click</span></td>
+                            <td>33</td>
+                            <td>65.4</td>
+                        </tr>
+                        <tr>
+                            <td>Florida</td>
+                            <td><span class="keyword-chip">tesla outsourcing services</span></td>
+                            <td><span class="click-chip">1 Click</span></td>
+                            <td>2</td>
+                            <td>2.5</td>
+                        </tr>
+                        <tr>
+                            <td>Boston</td>
+                            <td><span class="keyword-chip">bim services boston</span></td>
+                            <td><span class="click-chip">1 Click</span></td>
+                            <td>85</td>
+                            <td>12.1</td>
+                        </tr>
+                        <tr>
+                            <td>California</td>
+                            <td><span class="keyword-chip">bim modeling services</span></td>
+                            <td>0</td>
+                            <td>411</td>
+                            <td class="text-red" style="font-weight: bold;">68.8</td>
+                        </tr>
+                        <tr>
+                            <td>California</td>
+                            <td><span class="keyword-chip">bim in los angeles, california</span></td>
+                            <td>0</td>
+                            <td>401</td>
+                            <td>21.1</td>
+                        </tr>
+                        <tr>
+                            <td>California</td>
+                            <td><span class="keyword-chip">bim in los angeles, california near me</span></td>
+                            <td>0</td>
+                            <td>186</td>
+                            <td>32.0</td>
+                        </tr>
+                        <tr>
+                            <td>California</td>
+                            <td><span class="keyword-chip">bim services in california</span></td>
+                            <td>0</td>
+                            <td>126</td>
+                            <td>21.0</td>
+                        </tr>
+                        <tr>
+                            <td>Texas</td>
+                            <td><span class="keyword-chip">bim services</span></td>
+                            <td>0</td>
+                            <td>123</td>
+                            <td>57.6</td>
+                        </tr>
+                        <tr>
+                            <td>Florida</td>
+                            <td><span class="keyword-chip">bim services florida</span></td>
+                            <td>0</td>
+                            <td>108</td>
+                            <td>15.6</td>
+                        </tr>
+                        <tr>
+                            <td>Texas</td>
+                            <td><span class="keyword-chip">bim services in texas</span></td>
+                            <td>0</td>
+                            <td>86</td>
+                            <td>19.5</td>
+                        </tr>
+                        <tr>
+                            <td>Boston</td>
+                            <td><span class="keyword-chip">bim services in boston</span></td>
+                            <td>0</td>
+                            <td>86</td>
+                            <td>14.4</td>
+                        </tr>
+                        <tr>
+                            <td>Boston</td>
+                            <td><span class="keyword-chip">bim coordination services boston</span></td>
+                            <td>0</td>
+                            <td>85</td>
+                            <td>15.3</td>
+                        </tr>
+                        <tr>
+                            <td>Texas</td>
+                            <td><span class="keyword-chip">scan to bim services texas</span></td>
+                            <td>0</td>
+                            <td>78</td>
+                            <td>23.9</td>
+                        </tr>
+                        <tr>
+                            <td>Florida</td>
+                            <td><span class="keyword-chip">bim template customization florida</span></td>
+                            <td>0</td>
+                            <td>74</td>
+                            <td class="text-emerald" style="font-weight: bold;">8.3</td>
+                        </tr>
+                        <tr>
+                            <td>Florida</td>
+                            <td><span class="keyword-chip">bim services in florida</span></td>
+                            <td>0</td>
+                            <td>67</td>
+                            <td>15.8</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 class="section-title">3. Individual SERP Setup Overview</h2>
+            
+            <div class="grid-serp">
+                <div class="serp-card">
+                    <div class="serp-context">Los Angeles (With VPN)</div>
+                    <h3>BIM Services</h3>
+                    <div class="pos-container">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="pos-badge bg-emerald">#14</span>
+                    </div>
+                    <div class="serp-footer">
+                        <span class="footer-tag">RANKING PAGE</span>
+                        <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-california.php" target="_blank">.../usa/bim-services-california.php</a>
+                    </div>
+                </div>
+
+                <div class="serp-card">
+                    <div class="serp-context">Texas (Without VPN)</div>
+                    <h3>BIM Services</h3>
+                    <div class="pos-container">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="pos-badge bg-purple">Cited In AI</span>
+                    </div>
+                    <div class="serp-footer">
+                        <span class="footer-tag">CITED PAGE</span>
+                        <a href="https://www.teslaoutsourcingservices.com/bim-services.php" target="_blank">.../bim-services.php</a>
+                    </div>
+                </div>
+
+                <div class="serp-card">
+                    <div class="serp-context">USA (Pan)</div>
+                    <h3>BIM Services California</h3>
+                    <div class="pos-container">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="pos-badge bg-amber">#24</span>
+                    </div>
+                    <div class="serp-footer">
+                        <span class="footer-tag">RANKING PAGE</span>
+                        <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-california.php" target="_blank">.../usa/bim-services-california.php</a>
+                    </div>
+                </div>
+
+                <div class="serp-card">
+                    <div class="serp-context">USA (Pan)</div>
+                    <h3>BIM Services Florida</h3>
+                    <div class="pos-container">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="pos-badge bg-amber">#21</span>
+                    </div>
+                    <div class="serp-footer">
+                        <span class="footer-tag">RANKING PAGE</span>
+                        <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-florida.php" target="_blank">.../usa/bim-services-florida.php</a>
+                    </div>
+                </div>
+
+                <div class="serp-card">
+                    <div class="serp-context">USA (Pan)</div>
+                    <h3>BIM Services Boston</h3>
+                    <div class="pos-container">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="pos-badge bg-emerald">#19 (Also in AI)</span>
+                    </div>
+                    <div class="serp-footer">
+                        <span class="footer-tag">RANKING PAGE</span>
+                        <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-boston.php" target="_blank">.../usa/bim-services-boston.php</a>
+                    </div>
+                </div>
+
+                <div class="serp-card">
+                    <div class="serp-context">USA (Pan)</div>
+                    <h3>BIM Services Texas</h3>
+                    <div class="pos-container">
+                        <span class="stat-label">Current Position:</span>
+                        <span class="pos-badge bg-amber">#22</span>
+                    </div>
+                    <div class="serp-footer">
+                        <span class="footer-tag">RANKING PAGE</span>
+                        <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-texas.php" target="_blank">.../usa/bim-services-texas.php</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <!-- SECTION 1: PERFORMANCE MATRIX -->
-        <h2 class="text-2xl text-slate-900 my-8 flex items-center gap-3 border-l-4 border-blue-500 pl-3 font-bold">
-          1. Regional Performance Matrix
-        </h2>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          
-          <!-- California -->
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col">
-            <h3 class="text-xl font-bold text-slate-900 mb-5 pb-2 border-b-2 border-slate-50">California</h3>
-            <div class="mb-5 space-y-3">
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Impressions</span>
-                <span class="font-bold text-slate-900">2,322</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Clicks</span>
-                <span class="font-bold text-slate-900">1</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Avg. Position</span>
-                <span class="font-bold text-red-500">39.8</span>
-              </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-slate-500 font-medium">Desktop / Mobile</span>
-                <span class="font-bold text-slate-900">1,632 / 690</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Florida -->
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col">
-            <h3 class="text-xl font-bold text-slate-900 mb-5 pb-2 border-b-2 border-slate-50">Florida</h3>
-            <div class="mb-5 space-y-3">
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Impressions</span>
-                <span class="font-bold text-slate-900">821</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Clicks</span>
-                <span class="font-bold text-slate-900">1</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Avg. Position</span>
-                <span class="font-bold text-amber-500">20.0</span>
-              </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-slate-500 font-medium">Desktop / Mobile</span>
-                <span class="font-bold text-slate-900">357 / 464</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Texas -->
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col">
-            <h3 class="text-xl font-bold text-slate-900 mb-5 pb-2 border-b-2 border-slate-50">Texas</h3>
-            <div class="mb-5 space-y-3">
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Impressions</span>
-                <span class="font-bold text-slate-900">965</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Clicks</span>
-                <span class="font-bold text-slate-900">1</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Avg. Position</span>
-                <span class="font-bold text-red-500">29.2</span>
-              </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-slate-500 font-medium">Desktop / Mobile</span>
-                <span class="font-bold text-slate-900">864 / 101</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Boston -->
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col">
-            <h3 class="text-xl font-bold text-slate-900 mb-5 pb-2 border-b-2 border-slate-50">Boston</h3>
-            <div class="mb-5 space-y-3">
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Impressions</span>
-                <span class="font-bold text-slate-900">539</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Total Clicks</span>
-                <span class="font-bold text-slate-900">1</span>
-              </div>
-              <div class="flex justify-between items-center text-sm border-b border-slate-50 pb-2">
-                <span class="text-slate-500 font-medium">Avg. Position</span>
-                <span class="font-bold text-emerald-500">21.4</span>
-              </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-slate-500 font-medium">Desktop / Mobile</span>
-                <span class="font-bold text-slate-900">484 / 54</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- SECTION 2: KEYWORDS TABLE -->
-        <h2 class="text-2xl text-slate-900 my-8 flex items-center gap-3 border-l-4 border-blue-500 pl-3 font-bold">
-          2. Top Keyword (Clicks & High Impressions)
-        </h2>
-        
-        <div class="bg-white rounded-xl border border-slate-200 shadow-sm mb-16 overflow-x-auto">
-          <table class="w-full text-left min-w-[900px] border-collapse">
-            <thead>
-              <tr class="bg-slate-100 border-b-2 border-slate-200">
-                <th class="p-4 font-bold text-slate-900 text-sm uppercase tracking-wide">Region</th>
-                <th class="p-4 font-bold text-slate-900 text-sm uppercase tracking-wide">Keyword</th>
-                <th class="p-4 font-bold text-slate-900 text-sm uppercase tracking-wide">Clicks</th>
-                <th class="p-4 font-bold text-slate-900 text-sm uppercase tracking-wide">Impressions</th>
-                <th class="p-4 font-bold text-slate-900 text-sm uppercase tracking-wide">Pos</th>
-                <th class="p-4 font-bold text-slate-900 text-sm uppercase tracking-wide">Targeted Action Plan</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 text-sm">
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">California</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim outsourcing</span></td>
-                  <td class="p-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-bold text-xs whitespace-nowrap">1 Click</span></td>
-                  <td class="p-4 text-slate-800">45</td>
-                  <td class="p-4 text-slate-800">35.6</td>
-                  <td class="p-4 text-slate-600">Add a broad service FAQ section to the CA page.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Texas</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services provider</span></td>
-                  <td class="p-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-bold text-xs whitespace-nowrap">1 Click</span></td>
-                  <td class="p-4 text-slate-800">33</td>
-                  <td class="p-4 text-slate-800">65.4</td>
-                  <td class="p-4 text-slate-600">Expand the core capabilities and services section.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Florida</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">tesla outsourcing services</span></td>
-                  <td class="p-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-bold text-xs whitespace-nowrap">1 Click</span></td>
-                  <td class="p-4 text-slate-800">2</td>
-                  <td class="p-4 text-slate-800">2.5</td>
-                  <td class="p-4 text-slate-600">Branded term. Maintain current page setup.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Boston</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services boston</span></td>
-                  <td class="p-4"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-bold text-xs whitespace-nowrap">1 Click</span></td>
-                  <td class="p-4 text-slate-800">85</td>
-                  <td class="p-4 text-slate-800">12.1</td>
-                  <td class="p-4 text-slate-600">Optimize Title Tag & Meta Description to boost CTR.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">California</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim modeling services</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">411</td>
-                  <td class="p-4 text-red-500 font-bold">68.8</td>
-                  <td class="p-4 text-slate-600">Needs deep technical content expansion.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">California</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim in los angeles, california</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">401</td>
-                  <td class="p-4 text-slate-800">21.1</td>
-                  <td class="p-4 text-slate-600">Add "Los Angeles" exact match phrase to H2.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">California</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim in los angeles, california near me</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">186</td>
-                  <td class="p-4 text-slate-800">32.0</td>
-                  <td class="p-4 text-slate-600">Embed local Google Map snippet or address.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">California</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services in california</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">126</td>
-                  <td class="p-4 text-slate-800">21.0</td>
-                  <td class="p-4 text-slate-600">Add to H1/H2, build 3 internal links.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Texas</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">123</td>
-                  <td class="p-4 text-slate-800">57.6</td>
-                  <td class="p-4 text-slate-600">Map page to broad service intent.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Florida</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services florida</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">108</td>
-                  <td class="p-4 text-slate-800">15.6</td>
-                  <td class="p-4 text-slate-600">Add localized content, build 3 internal links.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Texas</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services in texas</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">86</td>
-                  <td class="p-4 text-slate-800">19.5</td>
-                  <td class="p-4 text-slate-600">Add to the introductory paragraph.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Boston</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services in boston</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">86</td>
-                  <td class="p-4 text-slate-800">14.4</td>
-                  <td class="p-4 text-slate-600">Add to H1/H2, build 2 internal links.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Boston</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim coordination services boston</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">85</td>
-                  <td class="p-4 text-slate-800">15.3</td>
-                  <td class="p-4 text-slate-600">Add dedicated "Coordination" sub-section.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Texas</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">scan to bim services texas</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">78</td>
-                  <td class="p-4 text-slate-800">23.9</td>
-                  <td class="p-4 text-slate-600">Create a new H2 section: "Scan to BIM in Texas".</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Florida</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim template customization florida</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">74</td>
-                  <td class="p-4 text-green-600 font-bold">8.3</td>
-                  <td class="p-4 text-slate-600">Optimize Meta CTR. Already ranking on Page 1.</td>
-              </tr>
-              <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="p-4 text-slate-800">Florida</td>
-                  <td class="p-4"><span class="bg-slate-100 text-blue-600 px-2 py-1 rounded font-mono font-semibold">bim services in florida</span></td>
-                  <td class="p-4 text-slate-800">0</td>
-                  <td class="p-4 text-slate-800">67</td>
-                  <td class="p-4 text-slate-800">15.8</td>
-                  <td class="p-4 text-slate-600">Use as anchor text from homepage.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- SECTION 3: SERP GRID -->
-        <h2 class="text-2xl text-slate-900 my-8 flex items-center gap-3 border-l-4 border-blue-500 pl-3 font-bold">
-          3. Individual SERP Setup Overview
-        </h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col hover:-translate-y-1 hover:shadow-md transition-all">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Los Angeles (With VPN)</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">BIM Services</h3>
-            <div class="bg-slate-50 rounded-lg p-3 flex justify-between items-center mb-6">
-              <span class="text-sm font-medium text-slate-500">Current Position:</span>
-              <span class="bg-emerald-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">#14</span>
-            </div>
-            <div class="mt-auto border-t border-slate-100 pt-4">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">RANKING PAGE</span>
-              <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-california.php" target="_blank" rel="noreferrer" class="text-sm text-blue-500 font-medium break-all hover:underline">.../usa/bim-services-california.php</a>
-            </div>
-          </div>
-
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col hover:-translate-y-1 hover:shadow-md transition-all">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Texas (Without VPN)</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">BIM Services</h3>
-            <div class="bg-slate-50 rounded-lg p-3 flex justify-between items-center mb-6">
-              <span class="text-sm font-medium text-slate-500">Current Position:</span>
-              <span class="bg-purple-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">Cited In AI</span>
-            </div>
-            <div class="mt-auto border-t border-slate-100 pt-4">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">CITED PAGE</span>
-              <a href="https://www.teslaoutsourcingservices.com/bim-services.php" target="_blank" rel="noreferrer" class="text-sm text-blue-500 font-medium break-all hover:underline">.../bim-services.php</a>
-            </div>
-          </div>
-
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col hover:-translate-y-1 hover:shadow-md transition-all">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">USA (Pan)</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">BIM Services California</h3>
-            <div class="bg-slate-50 rounded-lg p-3 flex justify-between items-center mb-6">
-              <span class="text-sm font-medium text-slate-500">Current Position:</span>
-              <span class="bg-amber-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">#24</span>
-            </div>
-            <div class="mt-auto border-t border-slate-100 pt-4">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">RANKING PAGE</span>
-              <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-california.php" target="_blank" rel="noreferrer" class="text-sm text-blue-500 font-medium break-all hover:underline">.../usa/bim-services-california.php</a>
-            </div>
-          </div>
-
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col hover:-translate-y-1 hover:shadow-md transition-all">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">USA (Pan)</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">BIM Services Florida</h3>
-            <div class="bg-slate-50 rounded-lg p-3 flex justify-between items-center mb-6">
-              <span class="text-sm font-medium text-slate-500">Current Position:</span>
-              <span class="bg-amber-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">#21</span>
-            </div>
-            <div class="mt-auto border-t border-slate-100 pt-4">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">RANKING PAGE</span>
-              <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-florida.php" target="_blank" rel="noreferrer" class="text-sm text-blue-500 font-medium break-all hover:underline">.../usa/bim-services-florida.php</a>
-            </div>
-          </div>
-
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col hover:-translate-y-1 hover:shadow-md transition-all">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">USA (Pan)</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">BIM Services Boston</h3>
-            <div class="bg-slate-50 rounded-lg p-3 flex justify-between items-center mb-6">
-              <span class="text-sm font-medium text-slate-500">Current Position:</span>
-              <span class="bg-emerald-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">#19 (Also in AI)</span>
-            </div>
-            <div class="mt-auto border-t border-slate-100 pt-4">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">RANKING PAGE</span>
-              <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-boston.php" target="_blank" rel="noreferrer" class="text-sm text-blue-500 font-medium break-all hover:underline">.../usa/bim-services-boston.php</a>
-            </div>
-          </div>
-
-          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col hover:-translate-y-1 hover:shadow-md transition-all">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">USA (Pan)</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">BIM Services Texas</h3>
-            <div class="bg-slate-50 rounded-lg p-3 flex justify-between items-center mb-6">
-              <span class="text-sm font-medium text-slate-500">Current Position:</span>
-              <span class="bg-amber-500 text-white px-3 py-1.5 rounded-full text-sm font-bold">#22</span>
-            </div>
-            <div class="mt-auto border-t border-slate-100 pt-4">
-              <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">RANKING PAGE</span>
-              <a href="https://www.teslaoutsourcingservices.com/usa/bim-services-texas.php" target="_blank" rel="noreferrer" class="text-sm text-blue-500 font-medium break-all hover:underline">.../usa/bim-services-texas.php</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
 </body>
 </html>
